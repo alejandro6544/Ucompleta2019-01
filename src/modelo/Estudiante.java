@@ -5,8 +5,13 @@
  */
 package modelo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -260,4 +265,61 @@ public class Estudiante {
         return true;
     }
 
+    public boolean insertarEstudianteImagen(Estudiante obje, String sql) {
+        boolean t=false;
+        FileInputStream fis = null;
+        PreparedStatement ps = null;
+        ConnectBD obj=new ConnectBD();
+        try {
+            if(obj.crearConexion()){
+                obj.getConexion().setAutoCommit(false);
+                File file=new File(obje.getFotoestudiante());
+                fis=new FileInputStream(file);
+                ps=obj.getConexion().prepareStatement(sql);
+                ps.setString(1,obje.getIdentificacione());
+                ps.setString(2,obje.getCodigoe());
+                ps.setString(3,obje.getNombre1e());
+                ps.setString(4,obje.getNombre2e());
+                ps.setString(5,obje.getApellido1e());
+                ps.setString(6,obje.getApellido2e());
+                ps.setString(7,obje.getDireccione());
+                ps.setString(8,obje.getCorreoe());
+                ps.setString(9,obje.getJornada());
+                ps.setBinaryStream(10, fis, (int) file.length());
+                ps.executeUpdate();
+                obj.getConexion().commit();
+                t=true;
+            }
+            
+        } catch (Exception ex) {
+            t=false;
+            System.out.println("Error "+ex.toString());
+        } finally {
+            try {
+                ps.close();
+                fis.close();
+            } catch (Exception ex) {
+                t=false;
+                System.out.println("Errro "+ex.toString());
+            }
+        }
+        return t;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

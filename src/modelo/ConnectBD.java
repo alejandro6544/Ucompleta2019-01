@@ -23,6 +23,12 @@ public class ConnectBD {
      public Connection getConexion() {
         return conexion;
     }
+
+    public Statement getSt() {
+        return st;
+    }
+     
+     
       /**
      * Método utilizado para establecer la conexión con la base de datos
      *

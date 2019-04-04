@@ -21,8 +21,9 @@ public class Ucompleta201901 {
      */
     public static void main(String[] args) {
         ControlEstudiante objce=new ControlEstudiante();
-        Estudiante obje=new Estudiante("1478", "20112", "Mariano", "Gutierrez", "car56", "mgutierrez@uao.edu.co", "Diurna");
-        boolean f=objce.insertarEstudiante(obje);
+        Estudiante obje=new Estudiante("3696", "963", "Maria", "Camila", "Salazar", "Aguirre", "calle45", "sd@uao.edu.co", "Nocurna", "D:/Users/admin-sala3/Documents/1.jpg");
+        
+        boolean f=objce.insertarEstudianteImagen(obje);
         
         if(f){
             

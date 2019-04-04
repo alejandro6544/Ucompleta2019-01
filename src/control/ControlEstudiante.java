@@ -23,5 +23,15 @@ public class ControlEstudiante {
         
         return f;
     }
+
+    public boolean insertarEstudianteImagen(Estudiante obje) {
+       boolean t=false;
+        String sql="insert into estudiantes(identificacione,codigoe,nombre1e,nombre2e,apellido1e, apellido2e, direccione,correoe,jornada,Fotoestudiante)"+
+                "values(?,?,?,?,?,?,?,?,?,?)";
+        
+        t=obje.insertarEstudianteImagen(obje,sql);
+        
+        return t;
+    }
     
 }
